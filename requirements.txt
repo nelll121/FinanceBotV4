@@ -1,0 +1,7 @@
+aiogram>=3.0
+gspread>=6.0
+google-auth>=2.0
+anthropic>=0.8
+apscheduler>=3.10
+python-dotenv>=1.0
+loguru>=0.7
