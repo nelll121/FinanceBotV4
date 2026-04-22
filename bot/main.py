@@ -7,6 +7,7 @@ import asyncio
 from aiogram import Bot, Dispatcher
 from aiogram.enums import ParseMode
 from aiogram.types import BotCommand
+from aiogram.client.default import DefaultBotProperties
 from loguru import logger
 
 from bot.config import BOT_TOKEN
@@ -28,18 +29,19 @@ async def run() -> None:
     if not BOT_TOKEN:
         raise RuntimeError("BOT_TOKEN is required")
 
-    from aiogram.client.default import DefaultBotProperties
+    bot = Bot(
+        BOT_TOKEN,
+        default=DefaultBotProperties(parse_mode=ParseMode.HTML)
+    )
 
-bot = Bot(
-    BOT_TOKEN,
-    default=DefaultBotProperties(parse_mode=ParseMode.HTML)
-)
     dp = Dispatcher()
     dp.include_router(setup_routers())
 
     await _set_commands(bot)
     setup_scheduler(bot)
+
     logger.info("FinanceBot v2 started")
+
     await dp.start_polling(bot)
 
 
