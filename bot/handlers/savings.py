@@ -15,7 +15,6 @@ router = Router(name="savings")
 
 """Savings and goals handlers."""
 
-from __future__ import annotations
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message, ReplyKeyboardMarkup, KeyboardButton
 
